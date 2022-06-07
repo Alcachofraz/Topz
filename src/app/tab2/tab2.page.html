@@ -1,17 +1,27 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Tasks
     </ion-title>
+    <ion-buttons slot="end">
+      <button (click)="addTop()">+ADD ITEM</button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item-sliding #slidingItem *ngFor="let top of tops">
+      <ion-item>
+        {{top.title}}
+      </ion-item>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="medium">
+    <ion-title (click)="logout()">Log out</ion-title>
+  </ion-toolbar>
+</ion-footer>
