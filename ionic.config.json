@@ -1,0 +1,7 @@
+{
+  "name": "Topz",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
