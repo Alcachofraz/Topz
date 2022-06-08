@@ -1,22 +1,18 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tasks
+      Tops
     </ion-title>
-    <ion-buttons slot="end">
-      <button (click)="addTop()">+ADD ITEM</button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding #slidingItem *ngFor="let top of tops">
-      <ion-item>
-        {{top.title}}
+    <ion-card *ngFor="let top of tops">
+      <ion-item (click)="openTop(top.$key)">
+        TOP {{top.top}} {{top.title}}
       </ion-item>
-
-    </ion-item-sliding>
+    </ion-card>
   </ion-list>
 </ion-content>
 

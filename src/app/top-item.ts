@@ -1,6 +1,7 @@
 export class TopItem {
     $key: any;
     place: number;
-    text: string;
+    title: string;
+    description: string;
     image: string;
 }

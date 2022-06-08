@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { ActionSheetController, IonSlides, ModalController } from '@ionic/angular';
+import { ActionSheetController, IonSlides, ModalController, NavController } from '@ionic/angular';
 import { FireauthService } from '../fireauthservice.service';
 import { FireserviceService } from '../fireservice.service';
 import { Top } from '../top';
@@ -19,6 +19,7 @@ export class Tab2Page {
     public fser: FireserviceService,
     public auth: FireauthService,
     public router: Router,
+    public nav: NavController,
   ) { }
 
   async ngOnInit() {
@@ -85,10 +86,15 @@ export class Tab2Page {
     await actionSheet.present();
   }*/
 
+  openTop(id: string) {
+    this.nav.navigateForward("/top/" + id);
+    console.log("open " + id);
+  }
+
   addTop() {
     let ntop: string = prompt("New Top");
     if (ntop !== "") {
-      let t: Top = { $key: '', title: ntop, top: 10, items: [], author: '', date: '' };
+      let t: Top = { $key: '', title: ntop, top: 10, author: '', date: '' };
       console.log(t);
       this.fser.createTop(t).then(resp => {
         console.log("createTop: then - " + resp);

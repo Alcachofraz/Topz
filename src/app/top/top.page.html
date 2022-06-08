@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      {{top.title}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Songs</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <ion-slides #slides>
+    <ion-slide *ngFor="let item of items">
+      <ion-card>
+        <img [src]="item.image" class="player-image">
+        <ion-card-header>
+          <ion-card-title>{{item.title}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>{{item.description}}</ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

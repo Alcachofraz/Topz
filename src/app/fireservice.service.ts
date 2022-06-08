@@ -15,6 +15,18 @@ export class FireserviceService {
     public auth: AngularFireAuth,
   ) { }
 
+  getTop(id: string) {
+    return this.auth.currentUser.then((currentUser) => {
+      return this.firestore.collection('users').doc(currentUser.uid).collection('tops').doc(id).snapshotChanges();
+    });
+  }
+
+  getItems(id: string) {
+    return this.auth.currentUser.then((currentUser) => {
+      return this.firestore.collection('users').doc(currentUser.uid).collection('tops').doc(id).collection('items').snapshotChanges();
+    });
+  }
+
   getTops() {
     return this.auth.currentUser.then((currentUser) => {
       return this.firestore.collection('users').doc(currentUser.uid).collection('tops').snapshotChanges();
