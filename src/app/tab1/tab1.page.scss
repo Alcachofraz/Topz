@@ -1,3 +1,7 @@
+.background {
+    --ion-background-color: #F8F2ED;
+}
+
 .welcome-card ion-img {
     max-height: 35vh;
     overflow: hidden;
@@ -26,4 +30,31 @@ ion-fab {
         height: 100%;
         --background: rgb(248, 248, 248);
     }
+}
+
+img {
+    padding-top: 24px;
+    width: 50%;
+}
+
+.welcome {
+    font-size: 14px;
+    font-weight: 500;
+    color: black;
+    margin: 0;
+    padding-top: 12px;
+}
+
+.username {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--ion-color-primary);
+    margin: 0;
+}
+
+ion-row {
+    padding-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center !important;
 }

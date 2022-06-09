@@ -6,12 +6,30 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="background">
   <ion-list>
-    <ion-card *ngFor="let top of tops">
-      <ion-item (click)="openTop(top.$key)">
-        TOP {{top.top}} {{top.title}}
-      </ion-item>
+    <ion-card class="top" *ngFor="let top of tops" (click)="openTop(top.$key)">
+
+      <ion-label class="title" color="black">
+        <span style="color: black; font-weight: 600;">TOP </span>
+        <span style="color: var(--ion-color-primary); font-weight: bold;">{{top.top}} </span>
+        <span style="color: black; font-weight: 600;">{{top.title}}</span>
+      </ion-label>
+      <ion-item-divider></ion-item-divider>
+      <ion-row center>
+        <ion-label class="date">
+          {{top.date}}
+        </ion-label>
+        <span (click)="$event.preventDefault(); $event.stopPropagation(); ">
+          <ion-icon color="black" id="trigger-button" name="menu"></ion-icon>
+          <ion-popover dismissOnSelect="true" trigger="trigger-button">
+            <ng-template>
+              <ion-label class="popover-option" (click)="editTop(top.$key)">Edit</ion-label>
+              <ion-label class="popover-option" (click)="deleteTop(top.$key)">Delete</ion-label>
+            </ng-template>
+          </ion-popover>
+        </span>
+      </ion-row>
     </ion-card>
   </ion-list>
 </ion-content>

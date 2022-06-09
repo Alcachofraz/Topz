@@ -1,0 +1,10 @@
+.background {
+    --ion-background-color: #F8F2ED;
+}
+
+ion-card {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    --ion-background-color: white;
+}

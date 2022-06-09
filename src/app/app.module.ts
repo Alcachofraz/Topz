@@ -17,9 +17,10 @@ import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreateTopPopoverComponent } from './create-top-popover/create-top-popover.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, CreateTopPopoverComponent],
   entryComponents: [],
   imports: [
     BrowserModule,

@@ -1,0 +1,32 @@
+<form class="form" [formGroup]="validations_form" (ngSubmit)="addTop(validations_form.value)">
+
+  <h1 class="popover-header">Create Top</h1>
+
+  <ion-item class="form-field">
+    <ion-label position="floating" color="primary">Top</ion-label>
+    <ion-input type="number" formControlName="top" placeholder="10"></ion-input>
+  </ion-item>
+  <div class="validation-errors">
+    <ng-container *ngFor="let validation of validation_messages.top">
+      <div class="error-message"
+        *ngIf="validations_form.get('top').hasError(validation.type) && (validations_form.get('top').dirty || validations_form.get('top').touched)">
+        {{ validation.message }}
+      </div>
+    </ng-container>
+  </div>
+  <ion-item class="form-field">
+    <ion-label position="floating" color="primary">Title</ion-label>
+    <ion-input type="text" formControlName="title" placeholder="Boardgames">
+    </ion-input>
+  </ion-item>
+  <div class="validation-errors">
+    <ng-container *ngFor="let validation of validation_messages.title">
+      <div class="error-message"
+        *ngIf="validations_form.get('title').hasError(validation.type) && (validations_form.get('title').dirty || validations_form.get('title').touched)">
+        {{ validation.message }}
+      </div>
+    </ng-container>
+  </div>
+  <ion-button class="submit-btn" expand="block" type="submit" [disabled]="!validations_form.valid">Create</ion-button>
+  <label class="error-message">{{errorMessage}}</label>
+</form>

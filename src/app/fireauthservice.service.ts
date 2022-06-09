@@ -11,13 +11,12 @@ export class FireauthService {
     public afAuth: AngularFireAuth
   ) { }
   doRegister(value) {
-    return new Promise<any>((resolve, reject) => {
+    return new Promise<any>((resolve, reject) =>
       this.afAuth.createUserWithEmailAndPassword(value.email,
         value.password)
         .then(
           res => resolve(res),
-          err => reject(err))
-    })
+          err => reject(err)))
   }
   doLogin(value) {
     return new Promise<any>((resolve, reject) => {

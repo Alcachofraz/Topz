@@ -1,7 +1,17 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Home
+      <img src="assets/images/logo.png">
+      <p class="welcome">Welcome back,</p>
+      <ion-row>
+        <p class="username">{{user?.username == null ? '...' : user?.username}}</p>
+        <ion-icon color="primary" name="person" (click)="presentUserProfile()"></ion-icon>
+      </ion-row>
     </ion-title>
   </ion-toolbar>
 </ion-header>
+
+
+<ion-content class="background">
+
+</ion-content>

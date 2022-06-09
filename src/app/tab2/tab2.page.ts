@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { ActionSheetController, IonSlides, ModalController, NavController } from '@ionic/angular';
+import { ActionSheetController, IonSlides, ModalController, NavController, PopoverController } from '@ionic/angular';
 import { FireauthService } from '../fireauthservice.service';
 import { FireserviceService } from '../fireservice.service';
 import { Top } from '../top';
@@ -15,6 +15,7 @@ export class Tab2Page {
 
   constructor(
     public modalController: ModalController,
+    public popoverController: PopoverController,
     public actionSheetController: ActionSheetController,
     public fser: FireserviceService,
     public auth: FireauthService,
@@ -38,53 +39,14 @@ export class Tab2Page {
     });
   }
 
-  /*getInfo() {
-    this.slides.getActiveIndex().then(data => {
-      console.log("active index", data);
-      this.selected_index = data;
-    });
+
+  deleteTop(id: string) {
+    return this.fser.deleteTop(id);
   }
 
-  async presentModal() {
-    this.getInfo();
-    let url = this.songs[this.selected_index].url;
-    const modal = await this.modalController.create({
-      component: ModalpagePage,
-      componentProps: { value: url }
-    });
-    return await modal.present();
+  editTop(id: string) {
+    return;
   }
-
-  async openMenu() {
-    const actionSheet = await this.actionSheetController.create({
-      header: 'Song',
-      mode: 'ios',
-      cssClass: 'action-sheet',
-      buttons: [{
-        text: 'View live performance',
-        icon: 'play',
-        cssClass: 'arrow',
-        handler: () => {
-          console.log('Play clicked');
-          this.presentModal();
-        }
-      }, {
-        text: 'Follow',
-        icon: 'logo-twitter',
-        handler: () => {
-          console.log('Favorite clicked');
-        }
-      }, {
-        text: 'Cancel',
-        icon: 'close',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
-        }
-      }]
-    });
-    await actionSheet.present();
-  }*/
 
   openTop(id: string) {
     this.nav.navigateForward("/top/" + id);
