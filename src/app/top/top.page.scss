@@ -8,3 +8,23 @@ ion-card {
     width: 500px;
     --ion-background-color: white;
 }
+
+ion-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center !important;
+}
+
+.toolbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center !important;
+    padding-left: 24px;
+    padding-right: 24px;
+    flex-wrap: nowrap;
+}
+
+.place {
+    font-weight: bold;
+    color: var(--ion-color-primary);
+}

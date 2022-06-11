@@ -24,6 +24,14 @@ const routes: Routes = [
     path: 'top/:sid',
     loadChildren: () => import('./top/top.module').then(m => m.TopPageModule)
   },
+  {
+    path: 'user-profile/:uid',
+    loadChildren: () => import('./user-profile/user-profile.module').then(m => m.UserProfilePageModule)
+  },
+  {
+    path: 'edit-top/:sid',
+    loadChildren: () => import('./edit-top/edit-top.module').then(m => m.EditTopPageModule)
+  },
 ];
 @NgModule({
   imports: [

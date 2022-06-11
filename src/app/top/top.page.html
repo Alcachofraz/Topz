@@ -1,8 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Top {{top?.top == null ? '...' : top?.top}} {{top?.title == null ? '' : top?.title}}
-    </ion-title>
+    <ion-row class="toolbar-content">
+      <ion-icon name="arrow-back-outline" style="font-size: 20px;" (click)="goBack()"></ion-icon>
+      <ion-title>
+        <div class="ion-text-wrap" style="padding-top: 8px; padding-bottom: 8px;">
+          Top <span style="color: var(--ion-color-primary); font-weight: bold;">{{top?.top == null ? '...' :
+            top?.top}}</span> {{top?.title ==null ? '' : top?.title}}
+        </div>
+      </ion-title>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
@@ -12,7 +18,7 @@
       <ion-card class="card">
         <img [src]="item.image" class="player-image">
         <ion-card-header>
-          <ion-card-title>{{item.title}}</ion-card-title>
+          <ion-card-title><span class="place">{{item.place}}</span>. {{item.title}}</ion-card-title>
         </ion-card-header>
         <ion-card-content>{{item.description}}</ion-card-content>
       </ion-card>

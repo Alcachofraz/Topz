@@ -1,0 +1,22 @@
+.background {
+    --ion-background-color: #F8F2ED;
+}
+
+.toolbar {
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+}
+
+.toolbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center !important;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.popover-option {
+    margin-right: 24px;
+    margin-left: 24px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}

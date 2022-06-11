@@ -24,6 +24,7 @@
           <ion-icon color="black" id="trigger-button" name="menu"></ion-icon>
           <ion-popover dismissOnSelect="true" trigger="trigger-button">
             <ng-template>
+              <ion-label class="popover-option" (click)="openTop(top.$key)">View</ion-label>
               <ion-label class="popover-option" (click)="editTop(top.$key)">Edit</ion-label>
               <ion-label class="popover-option" (click)="deleteTop(top.$key)">Delete</ion-label>
             </ng-template>
@@ -33,9 +34,3 @@
     </ion-card>
   </ion-list>
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar color="medium">
-    <ion-title (click)="logout()">Log out</ion-title>
-  </ion-toolbar>
-</ion-footer>

@@ -32,9 +32,32 @@ ion-fab {
     }
 }
 
-img {
+.logo {
     padding-top: 24px;
     width: 50%;
+}
+
+.top {
+    --ion-background-color: white;
+
+    padding-right: 16px;
+    padding-left: 16px;
+    padding-top: 20px;
+    padding-bottom: 12px;
+
+    border-radius: 16px;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.date {
+    font-size: 12px;
+    color: gray;
+    font-weight: bold;
+    font-family: 'Red Hat Mono';
 }
 
 .welcome {
@@ -52,9 +75,33 @@ img {
     margin: 0;
 }
 
-ion-row {
+.username-row {
     padding-bottom: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center !important;
+}
+
+.timeline-item-row {
+    padding-bottom: 12px;
+    display: flex;
+    justify-content: start;
+    align-items: center !important;
+}
+
+ion-item-divider {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    padding-top: 0px;
+    min-height: 1px !important;
+}
+
+ion-col {
+    padding: 0px;
+    margin: 0px
+}
+
+.clipboard {
+    padding-right: 16px;
+    width: 32%;
 }

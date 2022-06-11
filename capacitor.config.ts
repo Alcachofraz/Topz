@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'io.ionic.topz',
   appName: 'Topz',
   webDir: 'www',
   bundledWebRuntime: false

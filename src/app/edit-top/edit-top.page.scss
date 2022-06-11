@@ -1,0 +1,48 @@
+.background {
+    --ion-background-color: #F8F2ED;
+}
+
+ion-card {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    --ion-background-color: white;
+}
+
+ion-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center !important;
+}
+
+.toolbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center !important;
+    padding-left: 24px;
+    padding-right: 24px;
+    flex-wrap: nowrap;
+}
+
+.place {
+    padding-top: 6px;
+    padding-bottom: 8px;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--ion-color-primary);
+}
+
+span.textbox {
+    background-color: #FFF;
+    color: #888;
+    line-height: 20px;
+    height: 20px;
+    padding: 3px;
+    border: 1px #888 solid;
+    font-size: 9pt;
+}
+
+span.textbox ion-textarea {
+    border: 0px;
+    background-color: #FFF;
+}

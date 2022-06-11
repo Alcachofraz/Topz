@@ -18,9 +18,12 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateTopPopoverComponent } from './create-top-popover/create-top-popover.component';
+import { FileSizePipe } from './file-size.pipe';
+import { UserProfilePage } from './user-profile/user-profile.page';
+import { UploadImageComponent } from './upload-image/upload-image.component';
 
 @NgModule({
-  declarations: [AppComponent, CreateTopPopoverComponent],
+  declarations: [AppComponent, CreateTopPopoverComponent, UploadImageComponent],
   entryComponents: [],
   imports: [
     BrowserModule,

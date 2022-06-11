@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ActionSheetController, ModalController } from '@ionic/angular';
+import { ActionSheetController, ModalController, NavController } from '@ionic/angular';
 import { FireauthService } from '../fireauthservice.service';
 import { FireserviceService } from '../fireservice.service';
 import { Top } from '../top';
@@ -24,7 +24,8 @@ export class TopPage implements OnInit {
     public auth: FireauthService,
     public router: Router,
     public sanitizer: DomSanitizer,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public nav: NavController,
   ) { }
 
   async ngOnInit() {
@@ -35,11 +36,12 @@ export class TopPage implements OnInit {
         title: data.payload.data()['title'],
         top: data.payload.data()['top'],
         author: data.payload.data()['author'],
+        authorName: data.payload.data()['authorName'],
         date: data.payload.data()['date'],
       }
       console.log(this.top);
     });
-    (await this.fser.getItems(this.id)).subscribe(data => {
+    (await this.fser.streamItems(this.id)).subscribe(data => {
       this.items = data.map(e => {
         return {
           $key: e.payload.doc.id,
@@ -49,8 +51,12 @@ export class TopPage implements OnInit {
           image: e.payload.doc.data()['image'],
         };
       });
+      this.items.sort((a, b) => b.place - a.place);
       console.log(this.items);
     });
   }
 
+  goBack() {
+    this.nav.back();
+  }
 }

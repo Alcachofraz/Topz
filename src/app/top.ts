@@ -5,5 +5,6 @@ export class Top {
     title: string;
     top: number;
     author: string;
+    authorName: string;
     date: string;
 } 

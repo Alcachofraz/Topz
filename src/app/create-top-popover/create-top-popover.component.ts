@@ -59,7 +59,7 @@ export class CreateTopPopoverComponent implements OnInit {
       })).present();
     }
     else {
-      let t: Top = { $key: '', title: value.title, top: value.top, author: '', date: '' };
+      let t: Top = { $key: '', title: value.title, top: value.top, author: '', authorName: '', date: '' };
       console.log(t);
       await this.fser.createTop(t).then(resp => {
         t.$key = resp.id;

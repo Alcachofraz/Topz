@@ -11,26 +11,41 @@ import { getLocaleDateFormat, NumberFormatStyle } from '@angular/common';
   providedIn: 'root'
 })
 export class FireserviceService {
-  private snapshotChangesSubscription: any;
   constructor(
     public firestore: AngularFirestore,
     public auth: AngularFireAuth,
   ) { }
 
-  getUser() {
+  streamUser() {
     return this.auth.currentUser.then((currentUser) => {
       return this.firestore.collection('users').doc(currentUser.uid).snapshotChanges();
     });
   }
 
+  streamUserByUid(uid: string) {
+    return this.firestore.collection('users').doc(uid).snapshotChanges();
+  }
+
+  getUser() {
+    return this.auth.currentUser.then((currentUser) => {
+      return this.firestore.firestore.collection('users').doc(currentUser.uid).get();
+    });
+  }
+
   createUser(uid: string, email: string, username: string) {
-    return this.firestore.collection('users').doc(uid).set({ email: email, uid: uid, username: username });
+    return this.firestore.collection('users').doc(uid).set({
+      email: email, uid: uid, username: username, photoUrl: 'https://picsum.photos/800'
+    });
   }
 
   deleteItems(uid, topId) {
     return this.firestore.firestore.collection('users').doc(uid).collection('tops').doc(topId).collection('items').get().then((snapshot) => {
       return snapshot.docs.forEach((doc) => doc.ref.delete());
-    })
+    });
+  }
+
+  getTimeline(uid: string) {
+    return this.firestore.collectionGroup('tops').snapshotChanges();
   }
 
   getTop(id: string) {
@@ -39,10 +54,25 @@ export class FireserviceService {
     });
   }
 
-  getItems(id: string) {
+  streamItems(id: string) {
     return this.auth.currentUser.then((currentUser) => {
       return this.firestore.collection('users').doc(currentUser.uid).collection('tops').doc(id).collection('items').snapshotChanges();
     });
+  }
+
+  getItems(id: string) {
+    return this.auth.currentUser.then((currentUser) => {
+      return this.firestore.firestore.collection('users').doc(currentUser.uid).collection('tops').doc(id).collection('items').get();
+    });
+  }
+
+  saveItems(uid: string, topId: string, items) {
+    var batch = this.firestore.firestore.batch();
+    items.forEach((item) => {
+      const batchRef = this.firestore.firestore.collection('users').doc(uid).collection('tops').doc(topId).collection('items').doc(item.$key);
+      batch.set(batchRef, item);
+    });
+    return batch.commit();
   }
 
   getTops() {
@@ -52,11 +82,13 @@ export class FireserviceService {
   }
 
   createTop(top: Top) {
-    return this.auth.currentUser.then((currentUser) => {
-      top.author = currentUser.email;
+    return this.getUser().then((user) => {
+      top.author = user.id;
       top.date = new Date().toLocaleString('pt');
-      return this.firestore.collection('users').doc(currentUser.uid).collection('tops').add(top);
+      top.authorName = user.data()['username'];
+      return this.firestore.collection('users').doc(user.id).collection('tops').add(top);
     });
+
   }
 
   createItems(id: string, items: TopItem[]) {
@@ -88,6 +120,6 @@ export class FireserviceService {
   }
   unsubscribeOnLogOut() {
     //remember to unsubscribe from the snapshotChanges
-    this.snapshotChangesSubscription.unsubscribe();
+    return;
   }
 }

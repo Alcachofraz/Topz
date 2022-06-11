@@ -1,11 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      <img src="assets/images/logo.png">
+      <img class="logo" src="assets/images/logo.png">
       <p class="welcome">Welcome back,</p>
-      <ion-row>
+      <ion-row class="username-row">
         <p class="username">{{user?.username == null ? '...' : user?.username}}</p>
-        <ion-icon color="primary" name="person" (click)="presentUserProfile()"></ion-icon>
+        <ion-icon color="primary" name="person" (click)="openProfile(user.uid, $event)"></ion-icon>
       </ion-row>
     </ion-title>
   </ion-toolbar>
@@ -13,5 +13,30 @@
 
 
 <ion-content class="background">
-
+  <ion-list>
+    <ion-card class="top" *ngFor="let item of timeline" (click)="openTop(item.$key)">
+      <ion-col>
+        <ion-row center class="timeline-item-row">
+          <img class="clipboard" src="assets/images/clipboard.png">
+          <ion-col>
+            <p>
+              <span style="color: black; font-weight: 500; font-size: 18px;">TOP </span>
+              <span style="color: var(--ion-color-primary); font-weight: bold; font-size: 18px;">{{item.top}} </span>
+              <span style="color: black; font-weight: 500; font-size: 18px;">{{item.title}}</span>
+            </p>
+            <p>
+              <span style="color: black; font-weight: 500; font-size: 14px;">By </span>
+              <span style="color: var(--ion-color-primary); font-weight: bold; font-size: 14px;"
+                (click)="openProfile(item.author, $event)">{{item.authorName}}
+              </span>
+            </p>
+          </ion-col>
+        </ion-row>
+        <ion-item-divider></ion-item-divider>
+        <ion-label class="date">
+          {{item.date}}
+        </ion-label>
+      </ion-col>
+    </ion-card>
+  </ion-list>
 </ion-content>

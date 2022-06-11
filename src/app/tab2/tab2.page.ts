@@ -32,6 +32,7 @@ export class Tab2Page {
           top: e.payload.doc.data()['top'],
           items: e.payload.doc.data()['items'],
           author: e.payload.doc.data()['author'],
+          authorName: e.payload.doc.data()['authorName'],
           date: e.payload.doc.data()['date'],
         };
       });
@@ -45,36 +46,12 @@ export class Tab2Page {
   }
 
   editTop(id: string) {
-    return;
+    this.nav.navigateForward("/edit-top/" + id);
+    console.log("edit " + id);
   }
 
   openTop(id: string) {
     this.nav.navigateForward("/top/" + id);
     console.log("open " + id);
-  }
-
-  addTop() {
-    let ntop: string = prompt("New Top");
-    if (ntop !== "") {
-      let t: Top = { $key: '', title: ntop, top: 10, author: '', date: '' };
-      console.log(t);
-      this.fser.createTop(t).then(resp => {
-        console.log("createTop: then - " + resp);
-      })
-        .catch(error => {
-          console.log("createTop: catch - " + error);
-        });
-      console.log("addTop: " + this.tops);
-    }
-
-  }
-
-  logout() {
-    this.auth.doLogout()
-      .then(res => {
-        this.router.navigate(["/login"]);
-      }, err => {
-        console.log(err);
-      })
   }
 }
