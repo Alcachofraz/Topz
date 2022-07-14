@@ -6,10 +6,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ActionSheetController, AlertController, IonSlides, ModalController, NavController, PopoverController, ToastController } from '@ionic/angular';
 import { FireauthService } from '../fireauthservice.service';
 import { FireserviceService } from '../fireservice.service';
+import { StorageserviceService } from '../storageservice.service';
 import { Top } from '../top';
 import { TopItem } from '../top-item';
-import { finalize, tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-edit-top',
@@ -23,7 +22,8 @@ export class EditTopPage implements OnInit {
   items: Array<TopItem> = null;
   selected_index = 0;
 
-  constructor(public modalController: ModalController,
+  constructor(
+    public modalController: ModalController,
     public actionSheetController: ActionSheetController,
     public fser: FireserviceService,
     public auth: FireauthService,
@@ -36,64 +36,13 @@ export class EditTopPage implements OnInit {
     public toastController: ToastController,
     public popoverController: PopoverController,
     public nav: NavController,
+    public storage: StorageserviceService,
   ) {
-    this.isImgUploading = false;
-    this.isImgUploaded = false;
+
   }
 
-  ngFireUploadTask: AngularFireUploadTask;
-
-  progressNum: Observable<number>;
-
-  progressSnapshot: Observable<any>;
-
-  fileUploadedPath: Observable<string>;
-
-  FileName: string;
-  FileSize: number;
-
-  isImgUploading: boolean;
-  isImgUploaded: boolean;
-
-  fileUpload(event: FileList, itemId: string) {
-
-    const file = event.item(0)
-
-    if (file.type.split('/')[0] !== 'image') {
-      console.log('File type is not supported!')
-      return;
-    }
-
-    this.isImgUploading = true;
-    this.isImgUploaded = false;
-
-    this.FileName = file.name;
-
-    let fileStoragePath = `tops/${this.top.author}/${this.top.$key}/${itemId}`
-
-    const imageRef = this.angularFireStorage.ref(fileStoragePath);
-
-    this.ngFireUploadTask = this.angularFireStorage.upload(fileStoragePath, file);
-
-    this.progressNum = this.ngFireUploadTask.percentageChanges();
-    this.progressSnapshot = this.ngFireUploadTask.snapshotChanges().pipe(
-
-      finalize(() => {
-        this.fileUploadedPath = imageRef.getDownloadURL();
-
-        this.fileUploadedPath.subscribe(resp => {
-          let i = this.items.findIndex((e) => e.$key == itemId);
-          this.items[i].image = resp;
-          this.isImgUploading = false;
-          this.isImgUploaded = true;
-        }, error => {
-          console.log(error);
-        })
-      }),
-      tap(snap => {
-        this.FileSize = snap.totalBytes;
-      })
-    )
+  topItemImageUpload(event: FileList, itemId: string) {
+    this.storage.uploadTopItemImage(event, itemId, this.top, this.items);
   }
 
   async ngOnInit() {

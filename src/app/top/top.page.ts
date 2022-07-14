@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ActionSheetController, ModalController, NavController } from '@ionic/angular';
+import { ActionSheetController, IonSlides, ModalController, NavController } from '@ionic/angular';
 import { FireauthService } from '../fireauthservice.service';
 import { FireserviceService } from '../fireservice.service';
 import { Top } from '../top';
 import { TopItem } from '../top-item';
+import { ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-top',
@@ -13,6 +14,7 @@ import { TopItem } from '../top-item';
   styleUrls: ['./top.page.scss'],
 })
 export class TopPage implements OnInit {
+  @ViewChild('slides', { read: IonSlides }) public slides: IonSlides;
   id = null;
   top: Top = null;
   items: Array<TopItem> = null;
@@ -58,5 +60,17 @@ export class TopPage implements OnInit {
 
   goBack() {
     this.nav.back();
+  }
+
+  chooseItem() {
+
+  }
+
+  nextSlide() {
+    this.slides.slideNext();
+  }
+
+  previousSlide() {
+    this.slides.slidePrev();
   }
 }

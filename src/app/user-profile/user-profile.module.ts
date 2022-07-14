@@ -16,6 +16,6 @@ import { FileSizePipe } from '../file-size.pipe';
     IonicModule,
     UserProfilePageRoutingModule
   ],
-  declarations: [UserProfilePage, FileSizePipe]
+  declarations: [UserProfilePage]
 })
 export class UserProfilePageModule { }

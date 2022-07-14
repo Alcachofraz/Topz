@@ -16,6 +16,6 @@ import { FileSizePipe } from '../file-size.pipe';
     IonicModule,
     EditTopPageRoutingModule
   ],
-  declarations: [EditTopPage, FileSizePipe]
+  declarations: [EditTopPage]
 })
 export class EditTopPageModule { }

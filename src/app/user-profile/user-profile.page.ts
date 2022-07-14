@@ -7,7 +7,7 @@ import { FireserviceService } from '../fireservice.service';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/compat/storage';
 import { UserProfile } from '../user-profile';
-import { UploadImageComponent } from '../upload-image/upload-image.component';
+import { StorageserviceService } from '../storageservice.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -18,7 +18,8 @@ export class UserProfilePage implements OnInit {
   user: UserProfile = null;
   editable: boolean = false;
 
-  constructor(public modalController: ModalController,
+  constructor(
+    public modalController: ModalController,
     public actionSheetController: ActionSheetController,
     public fser: FireserviceService,
     public auth: FireauthService,
@@ -31,17 +32,8 @@ export class UserProfilePage implements OnInit {
     public toastController: ToastController,
     public popoverController: PopoverController,
     public nav: NavController,
+    public storage: StorageserviceService,
   ) {
-  }
-
-  async presentPopover() {
-    if (!this.editable) return;
-    const popover = await this.popoverController.create({
-      component: UploadImageComponent,
-      cssClass: '.popover-no-margin',
-      componentProps: { uid: this.user.uid }
-    });
-    await popover.present();
   }
 
   async ngOnInit() {
@@ -73,5 +65,13 @@ export class UserProfilePage implements OnInit {
 
   a() {
     console.log('editable: ' + this.editable);
+  }
+
+  fileUpload(event: FileList) {
+    this.storage.uploadPhotoUrl(event, this.user.uid, this.popoverController);
+  }
+
+  dismiss() {
+    this.popoverController.dismiss();
   }
 }

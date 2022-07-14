@@ -13,7 +13,7 @@
 </ion-header>
 
 <ion-content class="background">
-  <ion-slides>
+  <ion-slides #slides>
     <ion-slide *ngFor="let item of items">
       <ion-card class="card">
         <img [src]="item.image" class="player-image">
@@ -21,7 +21,24 @@
           <ion-card-title><span class="place">{{item.place}}</span>. {{item.title}}</ion-card-title>
         </ion-card-header>
         <ion-card-content>{{item.description}}</ion-card-content>
+        <ion-col></ion-col>
       </ion-card>
     </ion-slide>
   </ion-slides>
+
+  <ion-fab class="fab-left" vertical="bottom" horizontal="start">
+    <ion-fab-button color="primary" (click)="previousSlide()">
+      <ion-icon name="chevron-down-outline" style="font-size: 20px;"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab vertical="bottom" horizontal="center">
+    <ion-fab-button color="primary" (click)="chooseItem()">
+      <ion-icon name="search-outline" style="font-size: 20px;"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab class="fab-right" vertical="bottom" horizontal="end">
+    <ion-fab-button color="primary" (click)="nextSlide()">
+      <ion-icon name="chevron-up-outline" style="font-size: 20px;"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
