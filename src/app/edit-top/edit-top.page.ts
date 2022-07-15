@@ -4,9 +4,9 @@ import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/compat/
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionSheetController, AlertController, IonSlides, ModalController, NavController, PopoverController, ToastController } from '@ionic/angular';
-import { FireauthService } from '../fireauthservice.service';
-import { FireserviceService } from '../fireservice.service';
-import { StorageserviceService } from '../storageservice.service';
+import { FireAuthService } from '../fireauthservice.service';
+import { FireService } from '../fireservice.service';
+import { FireStorageService } from '../storageservice.service';
 import { Top } from '../top';
 import { TopItem } from '../top-item';
 
@@ -16,17 +16,18 @@ import { TopItem } from '../top-item';
   styleUrls: ['./edit-top.page.scss'],
 })
 export class EditTopPage implements OnInit {
-  @ViewChild('slides') slides: IonSlides;
+  @ViewChild('slides', { read: IonSlides }) public slides: IonSlides;
   id = null;
   top: Top = null;
   items: Array<TopItem> = null;
   selected_index = 0;
+  isPopoverOpen: boolean = false;
 
   constructor(
     public modalController: ModalController,
     public actionSheetController: ActionSheetController,
-    public fser: FireserviceService,
-    public auth: FireauthService,
+    public fser: FireService,
+    public auth: FireAuthService,
     private angularFirestore: AngularFirestore,
     public angularFireStorage: AngularFireStorage,
     public router: Router,
@@ -36,7 +37,7 @@ export class EditTopPage implements OnInit {
     public toastController: ToastController,
     public popoverController: PopoverController,
     public nav: NavController,
-    public storage: StorageserviceService,
+    public storage: FireStorageService,
   ) {
 
   }
@@ -89,5 +90,26 @@ export class EditTopPage implements OnInit {
 
   goBack() {
     this.nav.back();
+  }
+
+  openPopover() {
+    this.isPopoverOpen = true;
+  }
+
+  closePopover() {
+    this.isPopoverOpen = false;
+  }
+
+  chooseItem(item) {
+    this.slides.slideTo(Math.abs(this.items.length - item));
+    this.isPopoverOpen = false;
+  }
+
+  nextSlide() {
+    this.slides.slideNext();
+  }
+
+  previousSlide() {
+    this.slides.slidePrev();
   }
 }

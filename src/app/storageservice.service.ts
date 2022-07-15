@@ -5,21 +5,21 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionSheetController, AlertController, ModalController, PopoverController, ToastController } from '@ionic/angular';
 import { Observable } from 'rxjs';
-import { FireauthService } from './fireauthservice.service';
-import { FireserviceService } from './fireservice.service';
+import { FireAuthService } from './fireauthservice.service';
+import { FireService } from './fireservice.service';
 import { finalize, tap } from 'rxjs/operators';
 import { Top } from './top';
 
 @Injectable({
   providedIn: 'root'
 })
-export class StorageserviceService {
+export class FireStorageService {
 
   constructor(
     public modalController: ModalController,
     public actionSheetController: ActionSheetController,
-    public fser: FireserviceService,
-    public auth: FireauthService,
+    public fser: FireService,
+    public auth: FireAuthService,
     private angularFirestore: AngularFirestore,
     public angularFireStorage: AngularFireStorage,
     public router: Router,

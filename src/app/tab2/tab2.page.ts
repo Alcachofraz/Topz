@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActionSheetController, IonSlides, ModalController, NavController, PopoverController } from '@ionic/angular';
-import { FireauthService } from '../fireauthservice.service';
-import { FireserviceService } from '../fireservice.service';
+import { FireAuthService } from '../fireauthservice.service';
+import { FireService } from '../fireservice.service';
 import { Top } from '../top';
 
 @Component({
@@ -12,13 +12,14 @@ import { Top } from '../top';
 })
 export class Tab2Page {
   tops: Array<Top> = [];
+  isPopoverOpen: Map<string, boolean> = new Map<string, boolean>();
 
   constructor(
     public modalController: ModalController,
     public popoverController: PopoverController,
     public actionSheetController: ActionSheetController,
-    public fser: FireserviceService,
-    public auth: FireauthService,
+    public fser: FireService,
+    public auth: FireAuthService,
     public router: Router,
     public nav: NavController,
   ) { }
@@ -26,6 +27,7 @@ export class Tab2Page {
   async ngOnInit() {
     (await this.fser.getTops()).subscribe(data => {
       this.tops = data.map(e => {
+        this.isPopoverOpen.set(e.payload.doc.id, false);
         return {
           $key: e.payload.doc.id,
           title: e.payload.doc.data()['title'],
@@ -53,5 +55,13 @@ export class Tab2Page {
   openTop(id: string) {
     this.nav.navigateForward("/top/" + id);
     console.log("open " + id);
+  }
+
+  openPopover(top: Top) {
+    this.isPopoverOpen.set(top.$key, true);
+  }
+
+  closePopover(top: Top) {
+    this.isPopoverOpen.set(top.$key, false);
   }
 }

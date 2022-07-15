@@ -1,7 +1,7 @@
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FireauthService } from '../fireauthservice.service';
+import { FireAuthService } from '../fireauthservice.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -23,7 +23,7 @@ export class LoginPage implements OnInit {
     ]
   };
   constructor(
-    private authService: FireauthService,
+    private authService: FireAuthService,
     private formBuilder: FormBuilder,
     private router: Router
   ) { }

@@ -1,13 +1,13 @@
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { Injectable } from '@angular/core';
-import { FireserviceService } from './fireservice.service';
+import { FireService } from './fireservice.service';
 @Injectable({
   providedIn: 'root'
 })
-export class FireauthService {
+export class FireAuthService {
   constructor(
-    private firebaseService: FireserviceService,
+    private firebaseService: FireService,
     public afAuth: AngularFireAuth
   ) { }
   doRegister(value) {

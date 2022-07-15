@@ -32,7 +32,7 @@
     </ion-fab-button>
   </ion-fab>
   <ion-fab vertical="bottom" horizontal="center">
-    <ion-fab-button color="primary" (click)="chooseItem()">
+    <ion-fab-button color="primary" (click)="openPopover()">
       <ion-icon name="search-outline" style="font-size: 20px;"></ion-icon>
     </ion-fab-button>
   </ion-fab>
@@ -42,3 +42,15 @@
     </ion-fab-button>
   </ion-fab>
 </ion-content>
+
+<ion-popover offset-x="start" [isOpen]="isPopoverOpen" (ionPopoverDidDismiss)="closePopover()">
+  <ng-template>
+    <ion-content>
+      <ion-list *ngFor="let item of items">
+        <ion-title (click)="chooseItem(item.place)">
+          {{ item.place }}
+        </ion-title>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-popover>

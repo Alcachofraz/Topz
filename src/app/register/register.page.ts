@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserCredential } from 'firebase/auth';
-import { FireauthService } from '../fireauthservice.service';
-import { FireserviceService } from '../fireservice.service';
+import { FireAuthService } from '../fireauthservice.service';
+import { FireService } from '../fireservice.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -32,8 +32,8 @@ export class RegisterPage implements OnInit {
     ]
   };
   constructor(
-    private authService: FireauthService,
-    private firestore: FireserviceService,
+    private authService: FireAuthService,
+    private firestore: FireService,
     private formBuilder: FormBuilder,
     private router: Router
   ) { }

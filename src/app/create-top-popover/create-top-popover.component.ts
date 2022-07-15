@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PopoverController, ToastController } from '@ionic/angular';
-import { FireserviceService } from '../fireservice.service';
+import { FireService } from '../fireservice.service';
 import { Top } from '../top';
 import { TopItem } from '../top-item';
 
@@ -29,7 +29,7 @@ export class CreateTopPopoverComponent implements OnInit {
     ]
   };
 
-  constructor(private formBuilder: FormBuilder, public toastController: ToastController, public fser: FireserviceService, public popoverController: PopoverController) { }
+  constructor(private formBuilder: FormBuilder, public toastController: ToastController, public fser: FireService, public popoverController: PopoverController) { }
 
   async addTop(value) {
     console.log("title: " + value.title);
@@ -59,6 +59,7 @@ export class CreateTopPopoverComponent implements OnInit {
       })).present();
     }
     else {
+      this.dismiss();
       let t: Top = { $key: '', title: value.title, top: value.top, author: '', authorName: '', date: '' };
       console.log(t);
       await this.fser.createTop(t).then(resp => {

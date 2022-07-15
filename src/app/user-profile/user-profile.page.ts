@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionSheetController, AlertController, ModalController, NavController, PopoverController, ToastController } from '@ionic/angular';
-import { FireauthService } from '../fireauthservice.service';
-import { FireserviceService } from '../fireservice.service';
+import { FireAuthService } from '../fireauthservice.service';
+import { FireService } from '../fireservice.service';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/compat/storage';
 import { UserProfile } from '../user-profile';
-import { StorageserviceService } from '../storageservice.service';
+import { FireStorageService } from '../storageservice.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -21,8 +21,8 @@ export class UserProfilePage implements OnInit {
   constructor(
     public modalController: ModalController,
     public actionSheetController: ActionSheetController,
-    public fser: FireserviceService,
-    public auth: FireauthService,
+    public fser: FireService,
+    public auth: FireAuthService,
     private angularFirestore: AngularFirestore,
     public angularFireStorage: AngularFireStorage,
     public router: Router,
@@ -32,7 +32,7 @@ export class UserProfilePage implements OnInit {
     public toastController: ToastController,
     public popoverController: PopoverController,
     public nav: NavController,
-    public storage: StorageserviceService,
+    public storage: FireStorageService,
   ) {
   }
 

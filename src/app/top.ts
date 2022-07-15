@@ -1,7 +1,7 @@
 import { TopItem } from "./top-item";
 
 export class Top {
-    $key: any;
+    $key: string;
     title: string;
     top: number;
     author: string;

@@ -10,7 +10,7 @@ import { getLocaleDateFormat, NumberFormatStyle } from '@angular/common';
 @Injectable({
   providedIn: 'root'
 })
-export class FireserviceService {
+export class FireService {
   constructor(
     public firestore: AngularFirestore,
     public auth: AngularFireAuth,

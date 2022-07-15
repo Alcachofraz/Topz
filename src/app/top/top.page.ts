@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionSheetController, IonSlides, ModalController, NavController } from '@ionic/angular';
-import { FireauthService } from '../fireauthservice.service';
-import { FireserviceService } from '../fireservice.service';
+import { FireAuthService } from '../fireauthservice.service';
+import { FireService } from '../fireservice.service';
 import { Top } from '../top';
 import { TopItem } from '../top-item';
 import { ViewChild } from '@angular/core';
@@ -18,12 +18,13 @@ export class TopPage implements OnInit {
   id = null;
   top: Top = null;
   items: Array<TopItem> = null;
+  isPopoverOpen: boolean = false;
 
   constructor(
     public modalController: ModalController,
     public actionSheetController: ActionSheetController,
-    public fser: FireserviceService,
-    public auth: FireauthService,
+    public fser: FireService,
+    public auth: FireAuthService,
     public router: Router,
     public sanitizer: DomSanitizer,
     private activatedRoute: ActivatedRoute,
@@ -62,8 +63,17 @@ export class TopPage implements OnInit {
     this.nav.back();
   }
 
-  chooseItem() {
+  openPopover() {
+    this.isPopoverOpen = true;
+  }
 
+  closePopover() {
+    this.isPopoverOpen = false;
+  }
+
+  chooseItem(item) {
+    this.slides.slideTo(Math.abs(this.items.length - item));
+    this.isPopoverOpen = false;
   }
 
   nextSlide() {

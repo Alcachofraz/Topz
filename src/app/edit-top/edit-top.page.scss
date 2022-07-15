@@ -9,6 +9,19 @@ ion-card {
     --ion-background-color: white;
 }
 
+ion-popover {
+    height: 40vh;
+}
+
+.fab-right {
+    padding-right: 32px;
+}
+
+.fab-left {
+    padding-left: 32px;
+}
+
+
 ion-row {
     display: flex;
     justify-content: space-between;

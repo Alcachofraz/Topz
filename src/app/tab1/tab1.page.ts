@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { FireserviceService } from '../fireservice.service';
+import { FireService } from '../fireservice.service';
 import { Top } from '../top';
 import { UserProfile } from '../user-profile';
 
@@ -14,7 +14,7 @@ export class Tab1Page {
   user: UserProfile = null;
   timeline: Array<Top> = [];
 
-  constructor(public fser: FireserviceService, public nav: NavController, private activatedRoute: ActivatedRoute) { }
+  constructor(public fser: FireService, public nav: NavController, private activatedRoute: ActivatedRoute) { }
 
   async ngOnInit() {
     (await this.fser.streamUser()).subscribe(async data => {
