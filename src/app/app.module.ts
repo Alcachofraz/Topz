@@ -19,6 +19,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateTopPopoverComponent } from './create-top-popover/create-top-popover.component';
 import { FileSizePipe } from './file-size.pipe';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 
 @NgModule({
   declarations: [AppComponent, CreateTopPopoverComponent, FileSizePipe],
@@ -38,7 +39,7 @@ import { FileSizePipe } from './file-size.pipe';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, { provide: SETTINGS, useValue: {} }],
+  providers: [Keyboard, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, { provide: SETTINGS, useValue: {} }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

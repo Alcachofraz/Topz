@@ -58,17 +58,17 @@
     </ion-slide>
   </ion-slides>
 
-  <ion-fab class="fab-left" vertical="bottom" horizontal="start">
+  <ion-fab *ngIf="!keyboardUp" class="fab-left" vertical="bottom" horizontal="start">
     <ion-fab-button color="primary" (click)="previousSlide()">
       <ion-icon name="chevron-down-outline" style="font-size: 20px;"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  <ion-fab vertical="bottom" horizontal="center">
+  <ion-fab *ngIf="!keyboardUp" vertical="bottom" horizontal="center">
     <ion-fab-button color="primary" (click)="openPopover()">
       <ion-icon name="search-outline" style="font-size: 20px;"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  <ion-fab class="fab-right" vertical="bottom" horizontal="end">
+  <ion-fab *ngIf="!keyboardUp" class="fab-right" vertical="bottom" horizontal="end">
     <ion-fab-button color="primary" (click)="nextSlide()">
       <ion-icon name="chevron-up-outline" style="font-size: 20px;"></ion-icon>
     </ion-fab-button>

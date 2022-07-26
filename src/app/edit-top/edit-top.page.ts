@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/compat/storage';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { ActionSheetController, AlertController, IonSlides, ModalController, NavController, PopoverController, ToastController } from '@ionic/angular';
 import { FireAuthService } from '../fireauthservice.service';
 import { FireService } from '../fireservice.service';
@@ -22,6 +23,7 @@ export class EditTopPage implements OnInit {
   items: Array<TopItem> = null;
   selected_index = 0;
   isPopoverOpen: boolean = false;
+  keyboardUp: boolean = false;
 
   constructor(
     public modalController: ModalController,
@@ -38,8 +40,14 @@ export class EditTopPage implements OnInit {
     public popoverController: PopoverController,
     public nav: NavController,
     public storage: FireStorageService,
+    private keyboard: Keyboard
   ) {
-
+    window.addEventListener('keyboardDidShow', (e) => {
+      this.keyboardUp = true;
+    });
+    window.addEventListener('keyboardDidHide', () => {
+      this.keyboardUp = false;
+    });
   }
 
   topItemImageUpload(event: FileList, itemId: string) {
