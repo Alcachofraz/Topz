@@ -14,7 +14,7 @@
 
 <ion-content class="background">
   <ion-list>
-    <ion-card class="top" *ngFor="let item of timeline" (click)="openTop(item.$key)">
+    <ion-card class="top" *ngFor="let item of timeline" (click)="openTop(item.author, item.$key)">
       <ion-col>
         <ion-row center class="timeline-item-row">
           <img class="clipboard" src="assets/images/clipboard.png">

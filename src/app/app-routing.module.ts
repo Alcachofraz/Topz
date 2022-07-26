@@ -21,7 +21,7 @@ const routes: Routes = [
     loadChildren: () => import('./register/register.module').then(m => m.RegisterPageModule)
   },
   {
-    path: 'top/:sid',
+    path: 'top/:uid/:sid',
     loadChildren: () => import('./top/top.module').then(m => m.TopPageModule)
   },
   {

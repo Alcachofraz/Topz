@@ -24,7 +24,7 @@
     </ion-title>
   </ion-row>
   <ion-card-content *ngIf="!(storage.isImgUploading && !storage.isImgUploaded)">
-  <ion-button color="primary">
+  <ion-button *ngIf="editable" color="primary">
     <input type="file" (change)="fileUpload($event.target.files)" />
   </ion-button>
 </ion-card-content>

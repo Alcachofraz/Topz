@@ -52,8 +52,8 @@ export class Tab2Page {
     console.log("edit " + id);
   }
 
-  openTop(id: string) {
-    this.nav.navigateForward("/top/" + id);
+  openTop(author: string, id: string) {
+    this.nav.navigateForward("/top/" + author + "/" + id);
     console.log("open " + id);
   }
 

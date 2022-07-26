@@ -16,6 +16,7 @@ import { ViewChild } from '@angular/core';
 export class TopPage implements OnInit {
   @ViewChild('slides', { read: IonSlides }) public slides: IonSlides;
   id = null;
+  author = null;
   top: Top = null;
   items: Array<TopItem> = null;
   isPopoverOpen: boolean = false;
@@ -33,7 +34,10 @@ export class TopPage implements OnInit {
 
   async ngOnInit() {
     this.id = this.activatedRoute.snapshot.paramMap.get('sid');
-    (await this.fser.getTop(this.id)).subscribe(data => {
+    this.author = this.activatedRoute.snapshot.paramMap.get('uid');
+    console.log('1-' + this.id);
+    console.log('2-' + this.author);
+    (await this.fser.getTop(this.author, this.id)).subscribe(data => {
       this.top = {
         $key: data.payload.id,
         title: data.payload.data()['title'],
@@ -44,7 +48,7 @@ export class TopPage implements OnInit {
       }
       console.log(this.top);
     });
-    (await this.fser.streamItems(this.id)).subscribe(data => {
+    (await this.fser.streamItems(this.author, this.id)).subscribe(data => {
       this.items = data.map(e => {
         return {
           $key: e.payload.doc.id,

@@ -45,8 +45,8 @@ export class Tab1Page {
     console.log(this.user);
   }
 
-  openTop(id: string) {
-    this.nav.navigateForward("/top/" + id);
+  openTop(author: string, id: string) {
+    this.nav.navigateForward("/top/" + author + "/" + id);
     console.log("open " + id);
   }
 

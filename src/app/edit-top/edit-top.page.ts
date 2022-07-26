@@ -48,7 +48,7 @@ export class EditTopPage implements OnInit {
 
   async ngOnInit() {
     this.id = this.activatedRoute.snapshot.paramMap.get('sid');
-    (await this.fser.getTop(this.id)).subscribe(data => {
+    (await this.fser.getAuthorTop(this.id)).subscribe(data => {
       this.top = {
         $key: data.payload.id,
         title: data.payload.data()['title'],
@@ -59,7 +59,7 @@ export class EditTopPage implements OnInit {
       }
       console.log(this.top);
     });
-    await this.fser.getItems(this.id).then((data) => {
+    await this.fser.getAuthorItems(this.id).then((data) => {
       this.items = data.docs.map(doc => {
         return {
           $key: doc.id,

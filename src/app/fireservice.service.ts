@@ -48,22 +48,34 @@ export class FireService {
     return this.firestore.collectionGroup('tops').snapshotChanges();
   }
 
-  getTop(id: string) {
+  getAuthorTop(id: string) {
     return this.auth.currentUser.then((currentUser) => {
       return this.firestore.collection('users').doc(currentUser.uid).collection('tops').doc(id).snapshotChanges();
     });
   }
 
-  streamItems(id: string) {
+  streamAuthorItems(id: string) {
     return this.auth.currentUser.then((currentUser) => {
       return this.firestore.collection('users').doc(currentUser.uid).collection('tops').doc(id).collection('items').snapshotChanges();
     });
   }
 
-  getItems(id: string) {
+  getAuthorItems(id: string) {
     return this.auth.currentUser.then((currentUser) => {
       return this.firestore.firestore.collection('users').doc(currentUser.uid).collection('tops').doc(id).collection('items').get();
     });
+  }
+
+  getTop(uid: string, id: string) {
+    return this.firestore.collection('users').doc(uid).collection('tops').doc(id).snapshotChanges();
+  }
+
+  streamItems(uid: string, id: string) {
+    return this.firestore.collection('users').doc(uid).collection('tops').doc(id).collection('items').snapshotChanges();
+  }
+
+  getItems(uid: string, id: string) {
+    return this.firestore.firestore.collection('users').doc(uid).collection('tops').doc(id).collection('items').get();
   }
 
   saveItems(uid: string, topId: string, items) {

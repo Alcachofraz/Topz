@@ -8,7 +8,7 @@
 
 <ion-content class="background">
   <ion-list>
-    <ion-card *ngFor="let top of tops" class="top" (click)="openTop(top.$key)">
+    <ion-card *ngFor="let top of tops" class="top" (click)="openTop(top.author, top.$key)">
 
       <ion-label class="title" color="black">
         <span style="color: black; font-weight: 600;">TOP </span>
@@ -24,7 +24,7 @@
           <ion-icon color="black" id="trigger-button" name="menu"></ion-icon>
           <ion-popover dismissOnSelect="true" [isOpen]="isPopoverOpen.get(top.$key)" (ionPopoverDidDismiss)="closePopover(top)">
             <ng-template>
-              <ion-label class="popover-option" (click)="openTop(top.$key)">View</ion-label>
+              <ion-label class="popover-option" (click)="openTop(top.author, top.$key)">View</ion-label>
               <ion-label class="popover-option" (click)="editTop(top.$key)">Edit</ion-label>
               <ion-label class="popover-option" (click)="deleteTop(top.$key)">Delete</ion-label>
             </ng-template>
