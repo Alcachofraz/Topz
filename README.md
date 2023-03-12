@@ -2,4 +2,4 @@
 
 An Angular Ionic app developed in academic context. It's an app to keep track of user's interests, in the form of ordered lists. They can create their own Top X something. For example, Top 50 movies of all time.
 
-Check the report for more info.
+Check the report in documentation/ for more info.
